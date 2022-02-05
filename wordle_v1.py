@@ -17,12 +17,12 @@ class Wordle:
         self.canvas = None
         self.root = None
         self.width, self.height = width, height
-        self.box_height = 70
-        self.box_width = 70
-        self.gap = 10
+        self.box_height = self.height * 0.09  # 70
+        self.box_width = self.box_height  # 70
+        self.gap = self.box_height * 0.1  # 10
         self.pos_x = (self.width - (self.box_width * 5) - (self.gap * 4)) / 2
         self.new_pos_x = self.pos_x
-        self.pos_y = 100
+        self.pos_y = self.height * 0.13
         self.new_pos_y = self.pos_y
         self.block = self.box_width + self.gap
         self.color_right = '#3aa394'
@@ -38,9 +38,9 @@ class Wordle:
         self.row_counter = 0
         self.column_counter = 0
         self.guess = ''
-        self.kb_box_height = self.box_height * 0.7
-        self.kb_box_width = self.box_width * 0.7
-        self.kb_gap = 8
+        self.kb_box_height = self.box_height * 0.8
+        self.kb_box_width = self.box_width * 0.8
+        self.kb_gap = self.gap * 0.8
         self.kb_pos_x = (self.width - (self.kb_box_width * 10) - (self.kb_gap * 9)) / 2
         self.kb_new_pos_x = self.kb_pos_x
         self.kb_pos_y = self.pos_y + ((self.box_height + self.gap) * 6) * 1.02
@@ -59,7 +59,7 @@ class Wordle:
         self.words.extend(self.accepted_answers)
         self.invalid_message = 'Palavra inválida' if self.game_language == 'ptbr' else 'Not in word list'
         self.game_on = True
-        self.delay = 0.4
+        self.delay = 0.3
 
     def generate_gui(self):
         self.root = Tk(className=" Wordle Clone")
@@ -71,16 +71,22 @@ class Wordle:
         self.generate_keyboard()
 
         # title
-        self.canvas.create_text((self.width / 2,
-                                 self.pos_y / 5),
+        self.canvas.create_text((self.width * 0.5,
+                                 self.pos_y * 0.2),
                                 text='WORDLE CLONE',
-                                font=(self.font, int(self.kb_box_height * 0.6)),
+                                font=(self.font, int(self.kb_box_height * 0.55)),
                                 fill='white')
 
         # event listeners
         self.root.bind('<KeyPress>', self.kb_input)
         self.root.bind('<BackSpace>', self.kb_delete)
         self.root.bind('<Return>', self.kb_enter)
+
+        self.canvas.create_text((self.width / 2,
+                                 self.height * 0.98),
+                                text='github.com/3kleo',
+                                font=(self.font, int(self.kb_box_height * 0.2)),
+                                fill='white')
 
         self.root.mainloop()
 
@@ -331,5 +337,5 @@ class Wordle:
         self.canvas.tag_bind('⌫', "<Button-1>", lambda e, var='⌫': self.kb_delete(var))
 
 
-wordle = Wordle(800, 800)
+wordle = Wordle(800, 900)
 wordle.generate_gui()
