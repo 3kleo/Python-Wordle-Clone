@@ -21,7 +21,8 @@ Please place all the supporting files in the same folder as the script.
 - wordle_v1.py: executable script that runs the game. 
 - console_wordle_v1.ipynb: jupyter notebook version, includes the console input version
 - gui_wordle_v1.ipynb: jupyter notebook version, includes the GUI version
-- wordle_executable.zip: zip file with .exe version of the game. unzip and run wordle_executable.exe to play
+- wordle_executable_en.zip: zip file with executable english version of the game. unzip and run Wordle.exe to play
+- wordle_executable_ptbr.zip: zip file with executable portuguese version of the game. unzip and run Wordle.exe to play
 
 ## Project Versions
 V1 - Complete version of the script, has a GUI with virtual keyboard and colored boxes.
